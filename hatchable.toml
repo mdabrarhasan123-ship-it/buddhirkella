@@ -1,0 +1,43 @@
+[auth]
+enabled = true
+providers = ["email", "google"]
+
+[[secret]]
+name = "PATHANTOR_ADMIN_USERNAME"
+required = true
+description = "Username for the private PATHANTOR editorial desk login."
+
+[[secret]]
+name = "PATHANTOR_ADMIN_PASSWORD"
+required = true
+description = "Password for the private PATHANTOR editorial desk login. Store only here, never in source code."
+
+[[secret]]
+name = "PATHANTOR_ADMIN_SESSION_SECRET"
+required = true
+description = "Random secret used to sign secure admin session cookies."
+
+[[secret]]
+name = "PATHANTOR_ADMIN_EMAIL"
+required = false
+description = "Optional recipient address for test newsletter emails from the editorial desk."
+
+[db.tables.comments]
+read = "public"
+write = "public"
+
+[db.tables.likes]
+read = "public"
+write = "own"
+
+[db.tables.reader_bookmarks]
+read = "own"
+write = "own"
+
+[[cron]]
+path = "/api/jobs/newsletter"
+schedule = "0 * * * *"
+
+[[cron]]
+path = "/api/jobs/publish-scheduled"
+schedule = "0 * * * *"

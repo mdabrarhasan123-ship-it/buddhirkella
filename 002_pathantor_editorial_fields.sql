@@ -1,0 +1,6 @@
+ALTER TABLE articles ADD COLUMN IF NOT EXISTS featured BOOLEAN NOT NULL DEFAULT FALSE;
+ALTER TABLE articles ADD COLUMN IF NOT EXISTS author_name TEXT NOT NULL DEFAULT 'PATHANTOR Editorial';
+ALTER TABLE articles ADD COLUMN IF NOT EXISTS seo_title TEXT NOT NULL DEFAULT '';
+ALTER TABLE articles ADD COLUMN IF NOT EXISTS seo_description TEXT NOT NULL DEFAULT '';
+ALTER TABLE articles ADD COLUMN IF NOT EXISTS tags TEXT[] NOT NULL DEFAULT '{}';
+CREATE INDEX IF NOT EXISTS articles_featured_published_idx ON articles(featured, published_at DESC) WHERE status = 'published';

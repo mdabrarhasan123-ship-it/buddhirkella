@@ -1,0 +1,54 @@
+/* BUDDHIR KELLA — visible editorial motion system */
+:root{--bk-motion-ease:cubic-bezier(.16,1,.3,1)}
+@keyframes bk-paper-in{0%{opacity:0;transform:translateY(32px);filter:blur(5px)}100%{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes bk-line-reveal{0%{transform:translateY(115%);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes bk-rule-grow{0%{transform:scaleX(0);transform-origin:left}100%{transform:scaleX(1);transform-origin:left}}
+@keyframes bk-image-drift{0%{transform:scale(1.12);filter:grayscale(.5)}100%{transform:scale(1);filter:grayscale(.12)}}
+@keyframes bk-orbit{0%{transform:rotate(0deg) scale(.96)}50%{transform:rotate(180deg) scale(1.04)}100%{transform:rotate(360deg) scale(.96)}}
+@keyframes bk-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes bk-ink-wipe{0%{clip-path:inset(0 100% 0 0)}100%{clip-path:inset(0 0 0 0)}}
+@keyframes bk-pulse-line{0%,100%{opacity:.35;transform:scaleX(.7)}50%{opacity:1;transform:scaleX(1)}}
+@keyframes bk-card-arrive{from{opacity:0;transform:translateY(26px) rotateX(2deg)}to{opacity:1;transform:translateY(0) rotateX(0)}}
+@keyframes bk-spark{0%,100%{opacity:.35;transform:scale(.8)}50%{opacity:1;transform:scale(1.18)}}
+.intro .eyebrow,.intro .intro-note{animation:bk-paper-in .75s var(--bk-motion-ease) both}
+.intro .masthead .line{display:block;overflow:hidden;padding-block:.06em}
+.intro .masthead .line>span{display:inline-block;animation:bk-line-reveal 1.05s var(--bk-motion-ease) both;animation-delay:var(--line-delay,100ms)}
+.intro .masthead .line.second>span{animation-delay:.22s}
+.intro .intro-bottom{animation:bk-paper-in .85s .25s var(--bk-motion-ease) both}
+.intro .intro-index{animation:bk-paper-in .8s .4s var(--bk-motion-ease) both}
+.intro-index:before{content:"";position:absolute}
+.hero-feature:before{animation:bk-ink-wipe .9s .25s ease both}
+.feature-label{animation:bk-paper-in .65s .15s var(--bk-motion-ease) both}
+.bk-feature-slide .feature-image{overflow:hidden}
+.bk-feature-slide .feature-image img{animation:bk-image-drift 1.35s var(--bk-motion-ease) both}
+.bk-feature-slide .feature-copy{animation:bk-paper-in .85s .15s var(--bk-motion-ease) both}
+.bk-feature-slide .feature-copy:before{animation:bk-ink-wipe .9s .3s ease both}
+.bk-carousel-arrow{transition:transform .28s var(--bk-motion-ease),background .25s,color .25s,border-color .25s}
+.bk-carousel-arrow:hover{transform:translateY(-3px)}
+.section-head{position:relative}
+.section-head:after{content:"";position:absolute;bottom:-12px;left:0;width:min(180px,30vw);height:1px;background:var(--wine);transform-origin:left;animation:bk-rule-grow .9s .2s var(--bk-motion-ease) both}
+.section,.hero-feature,.lens-promo,.newsletter-band,.category-item,.article-card{animation:bk-paper-in .85s var(--bk-motion-ease) both}
+.article-card{animation-name:bk-card-arrive;animation-duration:.75s;animation-delay:calc(var(--card-index,0)*75ms)}
+.article-card .cardimage img{transition:transform 1.1s var(--bk-motion-ease),filter .7s ease}
+.article-card:hover .cardimage img{transform:scale(1.055);filter:saturate(1.05)}
+.category-item{position:relative;overflow:hidden;transition:transform .45s var(--bk-motion-ease),background .3s,border-color .3s}
+.category-item:before{content:"";position:absolute;inset:auto 0 0;height:3px;background:var(--wine);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--bk-motion-ease)}
+.category-item:hover:before{transform:scaleX(1)}
+.category-item .num{display:inline-block;transition:transform .4s var(--bk-motion-ease),color .3s}
+.category-item:hover .num{transform:translateY(-5px);color:var(--wine)}
+.lens-promo-mark{animation:bk-float 4s ease-in-out infinite}
+.newsletter-band{position:relative;overflow:hidden}
+.newsletter-band:after{content:"";position:absolute;right:-50px;top:-90px;width:260px;aspect-ratio:1;border:1px solid rgba(255,255,255,.22);border-radius:50%;box-shadow:0 0 0 25px rgba(255,255,255,.035),0 0 0 50px rgba(255,255,255,.025);pointer-events:none;animation:bk-orbit 28s linear infinite}
+.newsletter-band h2{position:relative;z-index:1}
+.pill,.text-link,.icon-btn,.bk-carousel-arrow{transition:transform .3s var(--bk-motion-ease),background .25s,color .25s,border-color .25s,box-shadow .3s}
+.pill:hover,.icon-btn:hover{box-shadow:0 9px 24px rgba(100,31,43,.13)}
+#progress{box-shadow:0 0 12px rgba(100,31,43,.25)}
+.site-header{animation:bk-paper-in .65s var(--bk-motion-ease) both}
+.wordmark .mark{position:relative;overflow:hidden}
+.wordmark .mark:after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 20%,rgba(255,255,255,.38) 50%,transparent 80%);transform:translateX(-120%);animation:bk-mark-sheen 3.8s 1s ease-in-out infinite}
+@keyframes bk-mark-sheen{0%,65%,100%{transform:translateX(-120%)}35%{transform:translateX(120%)}}
+.bk-feature-slide .feature-copy .text-link:after{content:"";height:1px;background:currentColor;position:absolute;bottom:0;left:0;right:100%;transition:right .35s var(--bk-motion-ease)}
+.bk-feature-slide .feature-copy .text-link{position:relative}
+.bk-feature-slide .feature-copy .text-link:hover:after{right:0}
+@media(max-width:720px){.intro .masthead .line>span{animation-duration:.8s}.newsletter-band:after{width:180px;right:-75px;top:-55px}.section-head:after{width:100px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}

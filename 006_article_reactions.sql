@@ -1,0 +1,2 @@
+ALTER TABLE article_events DROP CONSTRAINT IF EXISTS article_events_event_type_check;
+ALTER TABLE article_events ADD CONSTRAINT article_events_event_type_check CHECK (event_type IN ('view','share','like','unlike'));
